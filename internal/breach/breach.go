@@ -196,7 +196,7 @@ type upstreamProbe func(reachCode string) error
 //
 // 上游临时故障对应哨兵错误 model.ErrUpstreamTimeout。
 func IsRetryable(err error) bool {
-	return err == model.ErrUpstreamTimeout
+	return errors.Is(err, model.ErrUpstreamTimeout)
 }
 
 // IsDeterministic 报告错误是否属于不应重试的确定性错误。
